@@ -17,11 +17,11 @@ async def animate_spaceship(canvas, frames, max_rows, max_columns):
     """Draw animation of spaceship on canvas."""
 
     frames = cycle(frames)
-    row = max_rows // 2
-    column = max_columns // 2
-
+    row = max_rows
+    column = max_columns
     for frame in frames:
         draw_frame(canvas, row, column, frame)
         await asyncio.sleep(0)
-    await asyncio.sleep(0)
+        draw_frame(canvas, row, column, frame, negative=True)
+
 

@@ -23,5 +23,9 @@ async def animate_spaceship(canvas, frames, max_rows, max_columns):
         draw_frame(canvas, row, column, frame)
         await asyncio.sleep(0)
         draw_frame(canvas, row, column, frame, negative=True)
+        
+
+def spaceship_move(x, y, dx, dy):
+    return x + dx, y + dy
 
 

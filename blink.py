@@ -57,12 +57,14 @@ def draw(canvas, stars_amount=50):
         column = random.randint(2, x-3)
         coroutines.append(blink(canvas, row, column, random.choice(symbols)))
     y_start, x_start = y // 2, x // 2
-    # spaceship_coro = animate_spaceship(canvas, frames, y_start, x_start)
+    spaceship_coro = animate_spaceship(canvas, frames, y_start, x_start)
     while True:
         dy, dx, space = read_controls(canvas)
-        x_start, y_start = x_start + dx, y_start + dy
-        spaceship_coro = animate_spaceship(canvas, frames, y_start, x_start)
-        coroutines.append(spaceship_coro)
+        if dy or dx:
+            y_start, x_start = y_start + dy, x_start + dx
+            spaceship_coro = animate_spaceship(canvas, frames, y_start, x_start)
+            canvas.refresh()
+        spaceship_coro.send(None)
         for coro in coroutines:
             try:
                 coro.send(None)

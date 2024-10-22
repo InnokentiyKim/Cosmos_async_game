@@ -13,12 +13,13 @@ def load_frames(links):
     return frames
 
 
-async def animate_spaceship(canvas, frames, max_rows, max_columns):
+async def animate_spaceship(canvas, frames, start_row, start_column):
     """Draw animation of spaceship on canvas."""
 
     frames = cycle(frames)
-    row = max_rows
-    column = max_columns
+    row = start_row
+    column = start_column
+
     for frame in frames:
         draw_frame(canvas, row, column, frame)
         await asyncio.sleep(0)
